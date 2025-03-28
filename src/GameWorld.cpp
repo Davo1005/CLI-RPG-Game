@@ -1,4 +1,11 @@
 #include "../include/GameWorld.h"
+#include "../include/Combatable.h"
+#include "../include/Interactable.h"
+
+
+GameWorld::GameWorld() {
+    currentLocation = nullptr;
+}
 
 void GameWorld::battle(Hero* hero, Monster* monster) {
     while (hero->get_helth() > 0 && monster->get_helth() > 0) { 
@@ -54,7 +61,7 @@ void GameWorld::meetcharacter(Hero* hero, Location* location) {
     Character* encounter = location->get_entities()[0];
     if (dynamic_cast<NPC*>(encounter)) {
         NPC* npc = dynamic_cast<NPC*>(encounter);
-        npc->get_dialogue(hero);
+        npc->getDialogue();
         cout << "After a long walk, you meet it" << endl;
         Monster* monster = new Monster("shreik", Monstertype::Goblin);
         cout << "The battle starts" << endl;

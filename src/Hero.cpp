@@ -5,6 +5,36 @@ Hero::Hero(string name,Herotype herotype):Character(name,100,25,10){
     m_level=1;
     m_XP=0;  
 }
+
+void Hero::recover(int value){
+    m_health+=value;
+    cout<<"Your hero is recovered in with size:"<<value<<endl;
+}
+void Hero::improve_defense(int value){
+    m_defense+=value;
+    cout<<"Your hero defense improve in power of:"<<value<<endl;
+}
+string Hero::getName()const{
+    return m_name;
+}
+void Hero::attack(Character*target){
+    if(target==nullptr){
+        return;
+    }
+    target->takeDamage(m_attackPower);
+    cout<<"Your hero attack on"<<target->get_name()<<"In attackpower:"<<m_attackPower<<endl;
+}
+void Hero::takeDamage(int damage){
+    damage-=m_defense;
+    if(damage>0){
+        m_health-=damage;
+          if(m_health<0)
+          {
+            cout<<"Your hero is dead";
+          }
+    }   
+}
+
 void Hero::addItem(Item*inventory){
   m_inventory.push_back(inventory);
 }
@@ -50,22 +80,7 @@ void Hero::displayStats()const{
     cout<<"Level:"<<m_level<<endl;
     cout<<"XP:"<<m_XP;
 }
- void Hero::takeDamage(int damage){
-    damage-=m_defense;
-    if(damage>0){
-        m_health-=damage;
-          if(m_health<0){
-            cout<<"Your hero is dead";
-          }
-    }   
- }
-    void Hero::attack(Character* target){
-        if(target==nullptr){
-            return;
-        }
-        target->takeDamage(m_attackPower);
-        cout<<"Your hero attack on"<<target->get_name()<<"In attackpower:"<<m_attackPower<<endl;     
-    }
+
     void Hero::useAbility(Character*target){
       if(target==nullptr){
         cout<<"There is no such target"<<endl;

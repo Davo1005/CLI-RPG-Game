@@ -7,10 +7,11 @@
 #include<iostream>
 class NPC:public Character,public Interactable{
   public:
-    NPC(string name,QuestManager questmanager);
+    NPC(string name,QuestManager * questmanager);
+    void takeDamage(int damage);
+    void interact(Character* target);
+    string getDialogue() const;
     void displayStats()const;
-    void virtual takeDamage(int damage);
-    void get_dialogue(Hero* hero);
   private:
     string m_name;
     QuestManager* m_questmanager;

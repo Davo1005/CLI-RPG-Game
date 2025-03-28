@@ -27,16 +27,20 @@
             void addItem(Item* inventory);
             void displayStats()const override;
             void takeDamage(int damage)override;
-            void attack(Character* target)override;
-            void useAbility(Character* target)override;
-            void interact(Character* target)override;
+            void attack(Character* target);
+            void useAbility(Character* target);
+            void interact(Character* target);
+            void recover(int value);
+            void improve_defense(int value);
+            string getName()const;
             void useItem(int index);
             void printItem()const;
             void gainXP(int xp);
+            
             void levelup();
             int getlevel();
             string getDialogue()const override;
-            ~Hero();
+            virtual ~Hero();
 
     };
 #endif

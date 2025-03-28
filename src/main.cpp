@@ -17,6 +17,8 @@
 #include <vector>
 using namespace std;
 
+Hero* hero = nullptr;
+
 int main() {
     cout << "Welcome to the game" << endl;
     cout << "Enter your hero name" << endl;
@@ -43,7 +45,7 @@ int main() {
             cout << "Invalid choice" << endl;
             return 0;
     }
-    Hero* hero = new Hero(name, herotype);
+    hero = new Hero(name, herotype);
     cout << "Your hero is created" << endl;
     cout << "You are in the village" << endl;
     Location* village = new Location("Village");
