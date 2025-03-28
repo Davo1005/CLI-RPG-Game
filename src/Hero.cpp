@@ -22,7 +22,7 @@ void Hero::attack(Character*target){
         return;
     }
     target->takeDamage(m_attackPower);
-    cout<<"Your hero attack on"<<target->get_name()<<"In attackpower:"<<m_attackPower<<endl;
+    cout<<"Your hero attack on "<<target->get_name()<<". In attack power:"<<m_attackPower<<endl;
 }
 void Hero::takeDamage(int damage){
     damage-=m_defense;

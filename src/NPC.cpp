@@ -8,11 +8,11 @@ extern Hero* hero;
     }
     
     void NPC::interact(Character* target){
-      cout<<"Your hero interact with:"<<target->get_name()<<endl;
+      cout<<"Your hero interact with: "<<target->get_name()<<endl;
     }
     
     void NPC::takeDamage(int damage)    {
-      cout<<"You cant attack me"<<endl;
+      cout<<"You can't attack me"<<endl;
     }
     string NPC::getDialogue() const {
         string dialogue = "I'm a villager, can you help me?\nI have a quest for you.";

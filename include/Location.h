@@ -7,7 +7,7 @@ class Location{
         Location(const string& name):m_name(name){};
         void addentity(Character*entity){
             entities.push_back(entity);
-            cout<<entity->get_name()<<"Added in location"<<endl;
+            cout<<entity->get_name()<<" Added in location"<<endl;
         }
         void displayLocationInfo()const{
             cout << "You are in the " << m_name << endl;

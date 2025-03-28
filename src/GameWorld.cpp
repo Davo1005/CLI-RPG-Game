@@ -44,7 +44,7 @@ void GameWorld::battle(Hero* hero, Monster* monster) {
         cout << "You defeated the monster" << endl;
         hero->gainXP(10);
     } else {
-        cout << "Your hero is dead" << endl;
+        cout << "Your hero is dead " << endl;
         cout << "Game over" << endl;
         exit(0);
     }
