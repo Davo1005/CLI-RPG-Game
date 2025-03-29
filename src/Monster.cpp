@@ -1,48 +1,49 @@
 #include"../include/Monster.h"
 #include"../include/Utils.h"
+
+extern Hero* hero;
 Monster::Monster(string name,Monstertype type):Character(name,50,25,10){
     m_type=type;
 }
 void Monster::displayStats() const{
-    cout<<"Monster:"<<m_name<<endl;
-    cout<<"Monster is:";
+    printslow("Monster:" + m_name + "\n");
+    printslow("Monster is:");
     print_monstertype(m_type);
-    cout<<endl;
-    cout<<"Health:"<<m_health<<endl;
-    cout<<"Attack Power:"<<m_attackPower<<endl;
-    cout<<"Defense:"<<m_defense<<endl;
+    printslow("\n");
+    printslow("Health:" + to_string(m_health) + "\n");
+    printslow("Attack Power:" + to_string(m_attackPower) + "\n");
+    printslow("Defense:" + to_string(m_defense) + "\n");
 }
 void  Monster::takeDamage(int damage){
-    damage-=m_defense;
-    if(damage>0){
-        m_health-=damage;
-          if(m_health<0){
-            cout<<"monster is dead";
-          }
+    damage -= m_defense;
+    if(damage > 0){
+        m_health -= damage;
+        if(m_health < 0){
+            printslow("Monster is dead ");
+        }
     }   
- }   
+}   
 void Monster::attack(Character* target){
-    if(target==nullptr){
+    if(target == nullptr){
         return;
     }
     target->takeDamage(m_attackPower);
-    cout<<"Mnster attack on "<<target->get_name()<<". In attack power:"<<m_attackPower<<endl;     
+    printslow("Monster attack on " + target->get_name() + ". In attack power:" + to_string(m_attackPower) + "\n");     
 }
-void Monster::useAbility(Character*target){
-    if(m_type==Monstertype::Goblin){
-        cout<<"Goblin use poison attack on"<<target->get_name()<<endl;
-        cout<<"Your hero was damaged in 25 health"<<endl;
+void Monster::useAbility(Character* target){
+    if(m_type == Monstertype::Goblin){
+        printslow("Goblin use poison attack on " + target->get_name() + "\n");
+        printslow("Your hero was damaged in 25 health\n");
         target->takeDamage(25);
     }
-    if (m_type==Monstertype::Dragon){
-        cout<<"Dragon use fire attack on"<<target->get_name()<<endl;
-        cout<<"your hero was damaged in 25 health"<<endl;
+    if(m_type == Monstertype::Dragon){
+        printslow("Dragon use fire attack on " + target->get_name() + "\n");
+        printslow("Your hero was damaged in 25 health\n");
         target->takeDamage(25);   
     }
-    if(m_type==Monstertype::Troll){
-        cout<<"Troll use area attack on"<<target->get_name()<<endl;
-        cout<<"Your hero was damaged in 25 health"<<endl;
+    if(m_type == Monstertype::Troll){
+        printslow("Troll use area attack on " + target->get_name() + "\n");
+        printslow("Your hero was damaged in 25 health\n");
         target->takeDamage(25);
     }
 }
- 

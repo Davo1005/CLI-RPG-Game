@@ -20,4 +20,4 @@
         private:
             Monstertype m_type;
     };
-\
+

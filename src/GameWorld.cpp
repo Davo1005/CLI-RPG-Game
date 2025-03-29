@@ -1,6 +1,7 @@
 #include "../include/GameWorld.h"
 #include "../include/Combatable.h"
 #include "../include/Interactable.h"
+#include "../include/Utils.h"
 
 
 GameWorld::GameWorld() {
@@ -8,11 +9,12 @@ GameWorld::GameWorld() {
 }
 
 void GameWorld::battle(Hero* hero, Monster* monster) {
-    while (hero->get_helth() > 0 && monster->get_helth() > 0) { 
-        cout << "it is the hero's turn" << endl;
-        cout << "1. Attack" << endl;
-        cout << "2. Use Ability" << endl;
-        cout << "3. Use Item" << endl;
+    while (hero->get_helth() > 0 && monster->get_helth() > 0) 
+    { 
+        printslow("it is the hero's turn\n");
+        printslow("1. Attack\n");
+        printslow("2. Use Ability\n");
+        printslow("3. Use Item\n");
         int n;
         cin >> n;
         switch (n) {
@@ -23,29 +25,29 @@ void GameWorld::battle(Hero* hero, Monster* monster) {
                 hero->useAbility(monster);
                 break;
             case 3:
-                cout << "You have such items at your disposal" << endl;
+                printslow("You have such items at your disposal\n");
                 hero->printItem();
-                cout << "Which item do you want to use (0-2)?" << endl;
+                printslow("Which item do you want to use (0-2)?\n");
                 int h;
                 cin >> h;
                 hero->useItem(h);
                 break;
             default:
-                cout << "Invalid choice" << endl;
+                printslow("Invalid choice\n");
                 continue;
         }
         if (monster->get_helth() > 0) {
-            cout << "Monster's turn" << endl;
+            printslow("Monster's turn\n");
             monster->attack(hero);
         }
-        cout << "Hero health is " << hero->get_helth() << " | Monster health is " << monster->get_helth() << endl;
+        printslow("Hero health is " + std::to_string(hero->get_helth()) + " | Monster health is " + std::to_string(monster->get_helth()) + "\n");
     }
     if (hero->get_helth() > 0) {
-        cout << "You defeated the monster" << endl;
-        hero->gainXP(10);
+        printslow("You defeated the monster\n");
+        hero->gainXP(25);
     } else {
-        cout << "Your hero is dead " << endl;
-        cout << "Game over" << endl;
+        printslow("Your hero is dead\n");
+        printslow("Game over\n");
         exit(0);
     }
 }
@@ -56,21 +58,21 @@ Location* GameWorld::getCurrentLocation() {
 
 void GameWorld::meetcharacter(Hero* hero, Location* location) {
     if (location->get_entities().size() == 0) {
-        cout << "There is no personage here" << endl; 
+        printslow("There is no personage here\n"); 
     }
     Character* encounter = location->get_entities()[0];
     if (dynamic_cast<NPC*>(encounter)) {
         NPC* npc = dynamic_cast<NPC*>(encounter);
         npc->getDialogue();
-        cout << "After a long walk, you meet it" << endl;
+        printslow("After a long walk, you meet it\n");
         Monster* monster = new Monster("shreik", Monstertype::Goblin);
-        cout << "The battle starts" << endl;
+        printslow("The battle starts\n");
         battle(hero, monster);
     }
     if (dynamic_cast<Monster*>(encounter)) {
         Monster* monst = dynamic_cast<Monster*>(encounter);
-        cout << "You meet a " << monst->get_name() << endl;
-        cout << "Prepare for battle" << endl;
+        printslow("You meet a " + monst->get_name() + "\n");
+        printslow("Prepare for battle\n");
         battle(hero, monst);
     }  
 }
@@ -81,21 +83,21 @@ void GameWorld::addlocation(Location* location) {
 
 void GameWorld::setCurrentLocation(Location* location) {
     currentLocation = location;
-    std::cout << "Current location set to: " << location->get_Location_name() << endl;
+    printslow("Current location set to: " + location->get_Location_name() + "\n");
 }
 
 void GameWorld::moveToLocation() {
-    cout << "Which location do you want to move to?" << endl;
+    printslow("Which location do you want to move to?\n");
     for (int i = 0; i < locations.size(); i++) {
-        cout << locations[i]->get_Location_name() << endl;
+        printslow(std::to_string(i) + ". " + locations[i]->get_Location_name() + "\n");
     }
     int n;
     cin >> n;
     if (n >= 0 && n < locations.size()) {
         currentLocation = locations[n];
-        std::cout << "Moved to location: " << currentLocation->get_Location_name() << endl;
+        printslow("Moved to location: " + currentLocation->get_Location_name() + "\n");
     } else {
-        std::cout << "Invalid location index!" << endl;
+        printslow("Invalid location index!\n");
     }
 }
 

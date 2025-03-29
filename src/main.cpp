@@ -20,14 +20,14 @@ using namespace std;
 Hero* hero = nullptr;
 
 int main() {
-    cout << "Welcome to the game" << endl;
-    cout << "Enter your hero name" << endl;
+    printslow("Welcome to the game\n");
+    printslow("Enter your hero name\n");
     string name;
     cin >> name;
-    cout << "Choose your hero type" << endl;
-    cout << "1. Warrior" << endl;
-    cout << "2. Mage" << endl;
-    cout << "3. Rogue" << endl;
+    printslow("Choose your hero type\n");
+    printslow("1. Warrior\n");
+    printslow("2. Mage\n");
+    printslow("3. Rogue\n");
     int n;
     cin >> n;
     Herotype herotype;
@@ -42,12 +42,12 @@ int main() {
             herotype = Herotype::Rogue;
             break;
         default:
-            cout << "Invalid choice" << endl;
+            printslow("Invalid choice\n");
             return 0;
     }
     hero = new Hero(name, herotype);
-    cout << "Your hero is created" << endl;
-    cout << "You are in the village" << endl;
+    printslow("Your hero is created\n");
+    printslow("You are in the village\n");
     Location* village = new Location("Village");
     Location* forest = new Location("Forest");
     Location* cave = new Location("Cave");

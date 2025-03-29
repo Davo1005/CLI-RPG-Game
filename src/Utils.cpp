@@ -1,27 +1,38 @@
 #include "../include/Utils.h"
-
+#include "../include/Hero.h"
+#include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
-void print_monstertype(Monstertype monstertype){
-    if(monstertype==Monstertype::Goblin){
-        cout<<"Giblin"<<endl;
+ void printslow(const string &text) {
+    int delay = 5;
+    for (char c : text) {
+        cout << c << flush;
+        this_thread::sleep_for(std::chrono::milliseconds(delay));
     }
-    if(monstertype==Monstertype::Troll){
-        cout<<"Troll"<<endl;
-    } 
-    if(monstertype==Monstertype::Dragon){
-        cout<<"Dragon"<<endl;
-    }  
-} 
+}
 
-void print_herotype(Herotype herotype){
-    if(herotype==Herotype::Warrior){
-        cout<<"Warrior"<<endl;
+void print_monstertype(Monstertype monstertype) {
+    if (monstertype == Monstertype::Goblin) {
+        printslow("Giblin\n");
     }
-    if(herotype==Herotype::Mage){
-        cout<<"Mag"<<endl;
-    } 
-    if(herotype==Herotype::Rogue){
-        cout<<"Rogue"<<endl;
-    }  
-} 
+    if (monstertype == Monstertype::Troll) {
+        printslow("Troll\n");
+    }
+    if (monstertype == Monstertype::Dragon) {
+        printslow("Dragon\n");
+    }
+}
+
+void print_herotype(Herotype herotype) {
+    if (herotype == Herotype::Warrior) {
+        printslow("Warrior\n");
+    }
+    if (herotype == Herotype::Mage) {
+        printslow("Mag\n");
+    }
+    if (herotype == Herotype::Rogue) {
+        printslow("Rogue\n");
+    }
+}

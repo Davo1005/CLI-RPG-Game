@@ -6,6 +6,7 @@
 
 using namespace std;
 
+void printslow(const string &text);
 void print_herotype(Herotype herotype);
 void print_monstertype(Monstertype monstertype);
 

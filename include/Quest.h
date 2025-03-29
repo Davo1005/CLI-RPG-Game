@@ -1,6 +1,7 @@
 #ifndef QUEST
 #define QUEST
 #include"Hero.h"
+#include "Utils.h"
     class Quest{
         public:
             Quest(string description,int xp)
@@ -18,7 +19,7 @@
             void completedQuest(Hero*hero)
             {
                 completed=true;
-                cout<<"You do your quest succesfully. Your gained xp are"<<m_xp<<endl;
+                printslow("You do your quest successfully. Your gained XP are " + std::to_string(m_xp) + "\n");
                 hero->gainXP(m_xp);     
             }
             

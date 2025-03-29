@@ -1,26 +1,26 @@
 #ifndef HERO_H
 #define HERO_H
+enum class Herotype{
+    Warrior,
+    Mage,
+    Rogue
+};
     #include"Character.h"
     #include"Combatable.h"
     #include"Interactable.h"
     #include"Item.h"
     #include<vector>
     #include"Magic_Amulet.h"
+    #include"Utils.h"
     #include"Sword.h"
     #include"HealthPotion.h"
-    enum class Herotype{
-        Warrior,
-        Mage,
-        Rogue
-    };
-    
        
     class Hero: public Character, public Combatable, public Interactable{
         private:
             vector<Item*>m_inventory;
             int m_level;
             int m_XP;
-            const int xptolevelup=100;
+            const int xptolevelup=50;
             Herotype m_herotype;
         public:
             Hero(string name,Herotype herotype);
